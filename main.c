@@ -19,7 +19,7 @@ int main(int argc,char**argv)
 	{
 		name=argv[i];
 
-		if(!name)
+		if(!name||!*name)
 		{
 			fprintf(stderr,"error: name cannot be empty/null\n");
 			continue;
