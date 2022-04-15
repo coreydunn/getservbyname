@@ -3,11 +3,13 @@
 #include<stdlib.h>
 #include<sys/socket.h>
 #include<arpa/inet.h>
+#include<stdbool.h>
 
 int main(int argc,char**argv)
 {
 	struct servent*serv=NULL;
 	char*name=NULL;
+	bool reverse=false;
 
 	if(argc<2)
 	{
@@ -26,12 +28,26 @@ int main(int argc,char**argv)
 		}
 
 		serv=getservbyname(name,"tcp");
+
+		// Attempt reverse lookup
+		if(!serv)
+		{
+			printf("attempting reverse lookup\n");
+			serv=getservbyport(ntohs(atoi(name)),"tcp");
+			if(serv)
+				reverse=true;
+		}
+
+		// Failed
 		if(!serv)
 		{
 			fprintf(stderr,"error: cannot identify service '%s'\n",name);
 			continue;
 		}
 
-		printf("%s => %d\n",name,htons(serv->s_port));
+		if(reverse)
+			printf("%s => %s\n",name,serv->s_name);
+		else
+			printf("%s => %d\n",name,htons(serv->s_port));
 	}
 }
