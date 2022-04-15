@@ -52,6 +52,7 @@ void vec_free(Vec*s)
 
 void vec_print(Vec*v)
 {
+	if(!v)return;
 	printf("(%lu/%lu): [",v->n,v->c);
 	for(size_t i=0;i<v->n;++i)
 	{
@@ -60,4 +61,22 @@ void vec_print(Vec*v)
 			printf(", ");
 	}
 	printf("]\n");
+}
+
+void vec_sort(Vec*v)
+{
+	Str t;
+
+	if(!v)return;
+	if(!v->b||!v->c)return;
+	for(size_t i=0;i<v->n-1;++i)
+	{
+		for(size_t j=i+1;j<v->n;++j)
+		{
+			if(v->b[i].b[0]>v->b[j].b[0])
+				t=v->b[i],
+				v->b[i]=v->b[j],
+				v->b[j]=t;
+		}
+	}
 }

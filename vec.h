@@ -16,3 +16,4 @@ void vec_grow(Vec*s);
 void vec_push(Vec*s,char*c);
 void vec_free(Vec*s);
 void vec_print();
+void vec_sort(Vec*v);

@@ -64,6 +64,8 @@ int main(int argc,char**argv)
 	if(argc<2||showhelp)
 		printf("%s\n",HELPSTR);
 
+	vec_sort(&v);
+
 	// Process service names
 	if(!showhelp)
 	{
@@ -99,7 +101,7 @@ int main(int argc,char**argv)
 			{
 				char**p=serv->s_aliases;
 
-				printf("%s %d %s",serv->s_name,serv->s_port,serv->s_proto);
+				printf("%s %d %s",serv->s_name,ntohs(serv->s_port),serv->s_proto);
 				printf(" [");
 				for(int i=0;p[i];++i)
 				{
