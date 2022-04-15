@@ -32,7 +32,6 @@ int main(int argc,char**argv)
 		// Attempt reverse lookup
 		if(!serv)
 		{
-			printf("attempting reverse lookup\n");
 			serv=getservbyport(ntohs(atoi(name)),"tcp");
 			if(serv)
 				reverse=true;
