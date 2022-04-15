@@ -16,22 +16,28 @@ int main(int argc,char**argv)
 	bool verbose=false;
 	Vec v=vec_new();
 
-	if(argc<2)
+	// Process arguments
+	for(int i=1;i<argc;++i)
+	{
+		if(strcmp(argv[i],"-v")==0)
+		{
+			verbose=true;
+			continue;
+		}
+
+		vec_push(&v,argv[i]);
+	}
+
+	if(argc<2||!v.n)
 	{
 		fprintf(stderr,"error: service name not specified\n");
 		exit(1);
 	}
 
-	for(int i=1;i<argc;++i)
+	// Process service names
+	for(size_t i=0;i<v.n;++i)
 	{
-		name=argv[i];
-		vec_push(&v,name);
-
-		if(strcmp(name,"-v")==0)
-		{
-			verbose=true;
-			continue;
-		}
+		name=v.b[i].b;
 
 		if(!name||!*name)
 		{
