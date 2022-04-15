@@ -73,7 +73,7 @@ void vec_sort(Vec*v)
 	{
 		for(size_t j=i+1;j<v->n;++j)
 		{
-			if(v->b[i].b[0]>v->b[j].b[0])
+			if(strcmp(v->b[i].b,v->b[j].b)>0)
 				t=v->b[i],
 				v->b[i]=v->b[j],
 				v->b[j]=t;
