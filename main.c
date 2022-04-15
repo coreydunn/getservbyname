@@ -8,7 +8,7 @@
 #include"str.h"
 #include"vec.h"
 
-#define HELPSTR "usage: getservbyname -Uhtuv [SERVICE|PORT]"
+#define HELPSTR "usage: getservbyname -htuvU [SERVICE|PORT]"
 
 int main(int argc,char**argv)
 {

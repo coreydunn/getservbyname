@@ -12,4 +12,4 @@ getservbyname: $(OBJS)
 %: %.c
 	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS)
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) getservbyname

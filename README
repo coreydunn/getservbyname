@@ -1,3 +1,9 @@
-usage: getservbyname -Uhtuv [SERVICE|PORT]
+usage: getservbyname -htuvU [SERVICE|PORT]
 
 Look up network service by name or port
+
+	-h	Display help
+	-t	Look up service by TCP protocol
+	-u	Look up service by UDP protocol
+	-v	Display verbose output
+	-U	Do not sort output
