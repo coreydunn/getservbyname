@@ -1,0 +1,3 @@
+usage: getservbyname -Uhtuv [SERVICE|PORT]
+
+Look up network service by name or port
