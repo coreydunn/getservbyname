@@ -8,14 +8,15 @@
 #include"str.h"
 #include"vec.h"
 
-#define HELPSTR "usage: getservbyname -htuv [SERVICE|PORT]"
+#define HELPSTR "usage: getservbyname -Uhtuv [SERVICE|PORT]"
 
 int main(int argc,char**argv)
 {
 	Vec v=vec_new();
 	bool reverse=false;
-	bool verbose=false;
 	bool showhelp=false;
+	bool sort=true;
+	bool verbose=false;
 	char*name=NULL;
 	char*protocol="tcp";
 	struct servent*serv=NULL;
@@ -38,6 +39,10 @@ int main(int argc,char**argv)
 
 					case 't':
 						protocol="tcp";
+						break;
+
+					case 'U':
+						sort=false;
 						break;
 
 					case 'u':
@@ -64,7 +69,8 @@ int main(int argc,char**argv)
 	if(argc<2||showhelp)
 		printf("%s\n",HELPSTR);
 
-	vec_sort(&v);
+	if(sort)
+		vec_sort(&v);
 
 	// Process service names
 	if(!showhelp)
